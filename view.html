@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>留言板</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    /* 標題 */
+    h1 {
+      background-color: #004B97;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      margin: 0;
+    }
+
+    /* 固定的按鈕 */
+    .button-container {
+      text-align: center;
+      margin: 10px;
+    }
+    
+    .button {
+      background-color: #003D79;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .button:hover {
+      background-color: #003D79;
+    }
+
+    /* 留言區域 */
+    .messages-container {
+      padding: 20px;
+      background-color: #f9f9f9;
+      height: calc(100vh - 160px); /* 設定高度，讓留言區域剩下 */
+      overflow-y: scroll; /* 使留言區域可滾動 */
+    }
+
+    .message {
+      background-color: #f1f1f1;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .message-header {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- 標題 -->
+  <h1>留言板</h1>
+
+  <!-- 固定按鈕 -->
+  <div class="button-container">
+    <button class="button" onclick="goToView()">回到首頁</button>
+  </div>
+
+  <!-- 留言區域 -->
+  <div id="messages-container" class="messages-container"></div>
+
+  <script>
+    // 顯示留言資料的函數
+    function displayMessages(messages) {
+      const container = document.getElementById("messages-container");
+
+      if (!messages || messages.length === 0) {
+        container.innerHTML = "目前沒有留言。";
+        return;
+      }
+
+      // 顯示每條留言
+      messages.forEach(function(message) {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("message");
+
+        const messageHeader = document.createElement("div");
+        messageHeader.classList.add("message-header");
+        messageHeader.textContent = message.name;
+
+        const messageContent = document.createElement("div");
+        messageContent.textContent = message.message;
+
+        messageElement.appendChild(messageHeader);
+        messageElement.appendChild(messageContent);
+        container.appendChild(messageElement);
+      });
+    }
+
+    // 向 Google Apps Script 請求留言資料
+    google.script.run.withSuccessHandler(displayMessages).getMessages();
+
+    // 取得 Web App URL 並跳轉到 index頁面
+    function goToView() {
+      google.script.run.withSuccessHandler((url) => {
+        window.top.location.href = url ;  // 動態跳轉
+      }).getWebAppUrl();
+    }
+  </script>
+</body>
+</html>

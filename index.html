@@ -4,69 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>匿名留言板</title>
-    <link rel="stylesheet" href="styles.css">
-    <script>
-        // 強制刷新 CSS
-        let link = document.querySelector("link[rel='stylesheet']");
-        link.href = link.href.split("?")[0] + "?v=" + new Date().getTime();
-    </script>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f7f7f7; text-align: center; }
+        .container { width: 400px; margin: 20px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+        textarea, input { width: 90%; margin: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+        button { background-color: #4CAF50; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 5px; width: 100%; }
+        button:hover { background-color: #45a049; }
+        .message { background: #eee; padding: 10px; margin: 5px 0; border-radius: 5px; text-align: left; }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>匿名留言板</h1>
+        <h2>匿名留言板</h2>
         <input type="text" id="name" placeholder="你的名字 (可留空)">
-        <br>
         <textarea id="content" placeholder="寫點什麼..."></textarea>
-        <br>
-        <button onclick="sendMessage()">送出</button>
-        <br>
-        <h2>留言：</h2>
-        <ul id="messages"></ul>
+        <button onclick="submitMessage()">送出</button>
+        <h3>留言列表</h3>
+        <div id="messages"></div>
     </div>
 
     <script>
-        const API_URL = "https://anonymous-message-board-lqinersji-yimings-projects-245a6f94.vercel.app/messages";
-
-        async function sendMessage() {
+        // 🚀 送出留言
+        function submitMessage() {
             const name = document.getElementById("name").value.trim();
             const content = document.getElementById("content").value.trim();
+            if (!content) return alert("留言內容不能為空！");
 
-            if (!content) {
-                alert("留言內容不能為空！");
-                return;
-            }
-
-            try {
-                const response = await fetch(API_URL, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ name, content }),
-                });
-
-                if (!response.ok) throw new Error("留言發送失敗");
-
-                document.getElementById("content").value = "";
-                loadMessages();
-            } catch (error) {
-                console.error("Error sending message:", error);
-                alert("留言發送失敗，請稍後再試！");
-            }
+            google.script.run
+                .withSuccessHandler(() => { 
+                    document.getElementById("content").value = "";
+                    loadMessages();
+                })
+                .saveMessage(name, content);
         }
 
-        async function loadMessages() {
-            try {
-                const response = await fetch(API_URL);
-                if (!response.ok) throw new Error("無法載入留言");
-
-                const messages = await response.json();
-                const messagesList = document.getElementById("messages");
-
-                messagesList.innerHTML = messages
-                    .map(m => `<li><strong>${m.name || "匿名"}:</strong> ${m.content}</li>`)
-                    .join("");
-            } catch (error) {
-                console.error("Error loading messages:", error);
-            }
+        // 🚀 載入留言
+        function loadMessages() {
+            google.script.run.withSuccessHandler(messages => {
+                const messagesDiv = document.getElementById("messages");
+                messagesDiv.innerHTML = messages.map(m => `<div class="message"><strong>${m.name}:</strong> ${m.message}</div>`).join("");
+            }).getMessages();
         }
 
         loadMessages();

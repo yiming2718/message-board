@@ -1,2 +1,2 @@
-# anonymous-message-board
+# message-board
 This is an anonymous message board
