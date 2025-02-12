@@ -38,6 +38,7 @@
 1. **開啟 GAS 編輯器**（https://script.google.com/）
 2. 建立新專案，並貼上 `Code.gs` 內容
 3. 修改 `SHEET_ID`，填入你的試算表 ID
+4. 修改 'MY_TITLE`，幫自己的網站標題命名
 
 ### **3️⃣ 設定前端頁面**
 1. **新增檔案 → 選HTML → 命名為index**
