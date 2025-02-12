@@ -3,74 +3,87 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <title></title> -->
+  <!-- <title>🐾YM的嗷嗷專區🐾</title> -->
   <style>
-    body {
+/* 🔥 讓所有字體 & 版面都變大 20% */
+html {
+  font-size: 120%;
+}
+
+/* 🌟 主要設定 */
+body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f7f7f7;
   color: #333;
   margin: 0;
-  padding: 0;
+  padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 98vh;
   flex-direction: column;
   text-align: center;
 }
 
+/* 📝 標題 */
 h2 {
   color: #0f4c81;
-  font-size: 1.8rem;
-  margin-bottom: 10px;
+  font-size: 2rem;
+  margin-bottom: 18px;
 }
 
+/* 📦 留言表單區塊 */
 .container {
   background-color: #ffffff;
-  padding: 20px;
+  padding: 40px;
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   width: 90%;
   max-width: 480px;
+  margin-bottom: 50px; /* 增加底部間距 */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: left;
 }
 
 .container:hover {
-  transform: translateY(-2.5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
+/* 🏷️ 輸入框標籤 */
 label {
-  font-size: 16px;
-  margin-bottom: 8px;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
   display: block;
   color: #555;
   font-weight: bold;
 }
 
+/* ✏️ 輸入框 */
 input, textarea {
   width: calc(100% - 24px);
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  font-size: 16px;
-  background-color: #f7f7f7;
+  padding: 14px;
+  margin-bottom: 24px;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  font-size: 1.2rem;
+  background-color: #f0f0f0;
 }
 
 textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 120px;
 }
 
+/* 🎯 按鈕 */
 button {
-  padding: 12px;
-  border-radius: 6px;
+  padding: 14px;
+  margin-bottom: 20px;
+  border-radius: 8px;
   border: none;
   background-color: #4CAF50;
   color: #fff;
-  font-size: 16px;
+  font-size: 1.5rem;
   cursor: pointer;
   width: 100%;
 }
@@ -79,7 +92,7 @@ button:hover {
   background-color: #45a049;
 }
 
-/* 留言區 */
+/* 💬 留言區 */
 .messages {
   margin-top: 20px;
   max-width: 480px;
@@ -88,15 +101,15 @@ button:hover {
   overflow-y: auto;
   border: 1px solid #ddd;
   border-radius: 6px;
-  padding: 10px;
+  padding: 12px;
   background: #fff;
   text-align: left;
 }
 
 .message {
   border-bottom: 1px solid #eee;
-  padding: 8px;
-  font-size: 14px;
+  padding: 10px;
+  font-size: 1.1rem;
 }
 
 .message:last-child {
@@ -105,6 +118,32 @@ button:hover {
 
 .message strong {
   color: #0f4c81;
+}
+
+/* 📱 手機版調整 */
+@media (max-width: 540px) {
+  html {
+    font-size: 250%; /* 讓手機版再放大一點 */
+  }
+
+  .container {
+    width: 98%; /* 讓寬度更適合小螢幕 */
+    padding: 24px;
+  }
+
+  input, textarea {
+    font-size: 3rem; /* 讓輸入框的字體變大 */
+    padding: 24px;
+  }
+
+  button {
+    font-size: 3rem; /* 讓按鈕變大，方便點擊 */
+    padding: 24px;
+  }
+
+  h2 {
+    font-size: 3rem; /* 避免標題太大 */
+  }
 }
 
   </style>
