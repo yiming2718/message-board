@@ -1,52 +1,177 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>匿名留言板</title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f7f7f7; text-align: center; }
-        .container { width: 400px; margin: 20px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
-        textarea, input { width: 90%; margin: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
-        button { background-color: #4CAF50; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 5px; width: 100%; }
-        button:hover { background-color: #45a049; }
-        .message { background: #eee; padding: 10px; margin: 5px 0; border-radius: 5px; text-align: left; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <title></title> -->
+  <style>
+    body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  text-align: center;
+}
+
+h2 {
+  color: #0f4c81;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 480px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+}
+
+.container:hover {
+  transform: translateY(-2.5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+label {
+  font-size: 16px;
+  margin-bottom: 8px;
+  display: block;
+  color: #555;
+  font-weight: bold;
+}
+
+input, textarea {
+  width: calc(100% - 24px);
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  background-color: #f7f7f7;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+button {
+  padding: 12px;
+  border-radius: 6px;
+  border: none;
+  background-color: #4CAF50;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* 留言區 */
+.messages {
+  margin-top: 20px;
+  max-width: 480px;
+  width: 90%;
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  background: #fff;
+  text-align: left;
+}
+
+.message {
+  border-bottom: 1px solid #eee;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.message:last-child {
+  border-bottom: none;
+}
+
+.message strong {
+  color: #0f4c81;
+}
+
+  </style>
+  <script>
+    // 防止連點的變數
+let isSubmitting = false;
+
+// 提交留言到 Google Sheets
+function submitMessage() {
+  if (isSubmitting) return; // 如果已經在送出，不做任何事，避免重複留言
+  isSubmitting = true;
+
+  let name = document.getElementById('name').value.trim();
+  const message = document.getElementById('message').value.trim();
+  const submitButton = document.querySelector('button');
+
+  // 如果名稱欄位為空，設為 "匿名"
+  if (!name) {
+    name = "匿名";
+  }
+
+  // 檢查留言內容是否為空
+  if (!message) {
+    alert("🐾 嗷嗚🥺~ 不寫些什麼給我ㄇ(x");
+    isSubmitting = false; // 讓按鈕恢復可點擊狀態
+    return;
+  }
+
+  // 禁用送出按鈕，防止多次點擊
+  submitButton.disabled = true;
+  submitButton.innerText = "🐾 送出中...";
+
+  // 發送到 GAS
+  google.script.run.withSuccessHandler(() => {
+    alert('🐾 嗷耶～ 成功了!');
+    
+    // 清空輸入欄位
+    document.getElementById('name').value = '';
+    document.getElementById('message').value = '';
+
+    // 恢復送出按鈕
+    setTimeout(() => {
+      submitButton.disabled = false;
+      submitButton.innerText = "送出留言";
+      isSubmitting = false;
+    }, 1000); // 1秒後恢復，防止短時間連續點擊
+  }).submitToSheet(name, message);
+}
+
+  </script>
 </head>
 <body>
-    <div class="container">
-        <h2>匿名留言板</h2>
-        <input type="text" id="name" placeholder="你的名字 (可留空)">
-        <textarea id="content" placeholder="寫點什麼..."></textarea>
-        <button onclick="submitMessage()">送出</button>
-        <h3>留言列表</h3>
-        <div id="messages"></div>
-    </div>
+  <h2>🐾 嗷嗷～匿名留言板跑起來了！🚀</h2>
 
-    <script>
-        // 🚀 送出留言
-        function submitMessage() {
-            const name = document.getElementById("name").value.trim();
-            const content = document.getElementById("content").value.trim();
-            if (!content) return alert("留言內容不能為空！");
+  <div class="container">
+    <label for="name">你的暱稱或推名：</label>
+    <input type="text" id="name" placeholder="🐾 請留我知道的名字嗷(可留空匿名)">
 
-            google.script.run
-                .withSuccessHandler(() => { 
-                    document.getElementById("content").value = "";
-                    loadMessages();
-                })
-                .saveMessage(name, content);
-        }
+    <label for="message">嗷嗷嗷~留言給窩吧~：</label>
+    <textarea id="message" placeholder="🐾 寫些什麼嗷！" required></textarea>
 
-        // 🚀 載入留言
-        function loadMessages() {
-            google.script.run.withSuccessHandler(messages => {
-                const messagesDiv = document.getElementById("messages");
-                messagesDiv.innerHTML = messages.map(m => `<div class="message"><strong>${m.name}:</strong> ${m.message}</div>`).join("");
-            }).getMessages();
-        }
+    <button onclick="submitMessage()">送出留言</button>
+  </div>
 
-        loadMessages();
-    </script>
+  <!-- <div class="messages" id="messages"> -->
+    <!-- 這裡會顯示留言 -->
+  <!-- </div> -->
 </body>
+
 </html>
