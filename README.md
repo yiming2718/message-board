@@ -1,6 +1,6 @@
 # 🐾 YM的嗷嗷匿名留言板
 
-這是一個使用 **Google Apps Script（GAS）+ Google Sheets** 來的匿名留言板，讓User可以匿名留言，並且資料會即時寫入 Google 試算表。
+這是一個使用 **Google Apps Script（GAS）+ Google Sheets** 來的匿名留言板，讓用戶可以匿名留言，並且資料會即時寫入 Google 試算表。
 
 ## 🎯 功能
 ✅ 使用者可以匿名留言
@@ -63,4 +63,4 @@
 > 解決方式：確認 `submitToSheet()` 中的 `SHEET_ID` 是否正確。
 
 ## 🎉 歡迎使用
-希望這個留言板能夠幫助你完成匿名留言的需求！嗷嗚 🐾💖
+希望這個留言板能夠幫助你完成匿名留言的需求！嗷嗚 🐾
