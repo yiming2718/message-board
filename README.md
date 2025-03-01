@@ -1,6 +1,7 @@
 # 🐾 YM的嗷嗷匿名留言板
 
 這是一個使用 **Google Apps Script（GAS）+ Google Sheets** 來的匿名留言板，讓用戶可以匿名留言，並且資料會即時寫入 Google 試算表。
+網址如下：https://script.google.com/macros/s/AKfycby3aX4XBKCTonGdVJ8P6L4lqX8JLwf86wbXfy5YjEvnIRFlnUmoq9nDNdUvgQA0jig8/exec
 
 ## 🎯 功能
 ✅ 使用者可以匿名留言
