@@ -1,20 +1,20 @@
-# 🐾 YM的嗷嗷匿名留言板
+# 🐾 YM的匿名留言板
 
-這是一個使用 **Google Apps Script（GAS）+ Google Sheets** 來的匿名留言板，讓用戶可以匿名留言，並且資料會即時寫入 Google 試算表。
+這是一個使用 **Google Apps Script + Google Sheets** 的匿名留言板，讓使用者可以匿名留言，並且將留言即時寫入 Google Sheets。
 網址如下：https://script.google.com/macros/s/AKfycby3aX4XBKCTonGdVJ8P6L4lqX8JLwf86wbXfy5YjEvnIRFlnUmoq9nDNdUvgQA0jig8/exec
 
 ## 🎯 功能
 ✅ 使用者可以匿名留言
-✅ 防止按鈕連續點擊，避免重複送出
+✅ 防止按鈕連續點擊，避免重複送出留言
 ✅ 自動儲存留言到 **Google Sheets**
 ✅ **Hover 動畫效果**，看起來很酷!
 
 ## 🏗️ 技術架構
 - **前端**：HTML + CSS + JavaScript
-- **後端**：Google Apps Script（GAS）
+- **後端**：Google Apps Script
 - **資料庫**：Google Sheets
 
-## 📂 專案結構
+## 📂 架構
 ```
 / YM-Message-Board
 ├── index.html  # 前端頁面
@@ -22,7 +22,7 @@
 └── README.md   # 專案說明文件
 ```
 
-## 🚀 部署方式
+## 🚀 部署
 
 ### **1️⃣ 建立 Google 試算表**
 1. **開啟 Google Sheets**（https://docs.google.com/spreadsheets/）
@@ -35,7 +35,7 @@
    ![alt text](image/image2.png)
 4. 記下 **試算表 ID**（網址中的 `docs.google.com/spreadsheets/d/xxx/edit?...`，其中`xxx` 就是 試算表的ID）
 
-### **2️⃣ 建立 Google Apps Script（GAS）**
+### **2️⃣ 建立 Google Apps Script**
 1. **開啟 GAS 編輯器**（https://script.google.com/）
 2. 建立新專案，並貼上 `Code.gs` 內容
 3. 修改 `SHEET_ID`，填入你的試算表 ID
@@ -52,16 +52,3 @@
    - **存取權限** 設為 `任何人`
    - 點擊 `部署`
    - **複製網址** 完成!
-
-## 📌 預覽畫面
-💡 **PC & 手機瀏覽，畫面簡潔！**
-
-## 🛠️ 可能遇到的問題
-### **❓ GAS 回傳權限錯誤**
-> 解決方式：請確認 **GAS 部署權限** 設為 `任何人`。
-
-### **❓ 試算表沒有自動更新**
-> 解決方式：確認 `submitToSheet()` 中的 `SHEET_ID` 是否正確。
-
-## 🎉 歡迎使用
-希望這個留言板能夠幫助你完成匿名留言的需求！嗷嗚 🐾
