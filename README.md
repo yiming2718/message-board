@@ -1,7 +1,7 @@
 # 🐾 YM的匿名留言板
 
 這是一個使用 **Google Apps Script + Google Sheets** 的匿名留言板，讓使用者可以匿名留言，並且將留言即時寫入 Google Sheets。
-網址如下：https://script.google.com/macros/s/AKfycby3aX4XBKCTonGdVJ8P6L4lqX8JLwf86wbXfy5YjEvnIRFlnUmoq9nDNdUvgQA0jig8/exec
+網址如下：[https://script.google.com/macros/s/AKfycby3aX4XBKCTonGdVJ8P6L4lqX8JLwf86wbXfy5YjEvnIRFlnUmoq9nDNdUvgQA0jig8/exec](https://script.google.com/macros/s/AKfycbybwJuz5dCB4jku0RihI11GDsJ_7Fk6rW_0QGrQrPzl7S8OorYfsn9LZ6ugz7Qu7vo/exec)
 
 ## 🎯 功能
 ✅ 使用者可以匿名留言
