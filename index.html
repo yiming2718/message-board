@@ -3,214 +3,325 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <title>🐾YM的嗷嗷專區🐾</title> -->
+  <title>🐾YM的嗷嗷專區🐾</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
   <style>
-/* 🔥 讓所有字體 & 版面都變大 20% */
-html {
-  font-size: 120%;
-}
+    :root {
+      --primary-color: #00d2ff;
+      --secondary-color: #3a7bd5;
+      --bg-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --text-color: #ffffff;
+    }
 
-/* 🌟 主要設定 */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f7f7f7;
-  color: #333;
-  margin: 0;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 98vh;
-  flex-direction: column;
-  text-align: center;
-}
+    * {
+      box-sizing: border-box;
+      outline: none;
+    }
 
-/* 📝 標題 */
-h2 {
-  color: #0f4c81;
-  font-size: 2rem;
-  margin-bottom: 18px;
-}
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--bg-gradient);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: var(--text-color);
+      overflow-x: hidden;
+    }
 
-/* 📦 留言表單區塊 */
-.container {
-  background-color: #ffffff;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  width: 90%;
-  max-width: 480px;
-  margin-bottom: 50px; /* 增加底部間距 */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: left;
-}
+    /* 背景動畫 */
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-.container:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
+    /* 玻璃卡片容器 */
+    .card {
+      position: relative;
+      width: 90%;
+      max-width: 500px;
+      padding: 40px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 24px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      animation: float 6s ease-in-out infinite;
+    }
 
-/* 🏷️ 輸入框標籤 */
-label {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-  display: block;
-  color: #555;
-  font-weight: bold;
-}
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
 
-/* ✏️ 輸入框 */
-input, textarea {
-  width: calc(100% - 24px);
-  padding: 14px;
-  margin-bottom: 24px;
-  border-radius: 8px;
-  border: 2px solid #ddd;
-  font-size: 1.2rem;
-  background-color: #f0f0f0;
-}
+    /* 標題 */
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-textarea {
-  resize: vertical;
-  min-height: 120px;
-}
+    .header h2 {
+      font-size: 2rem;
+      margin: 0;
+      background: linear-gradient(to right, #00d2ff, #928DAB);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
 
-/* 🎯 按鈕 */
-button {
-  padding: 14px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  border: none;
-  background-color: #4CAF50;
-  color: #fff;
-  font-size: 1.5rem;
-  cursor: pointer;
-  width: 100%;
-}
+    .header p {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+      margin-top: 8px;
+    }
 
-button:hover {
-  background-color: #45a049;
-}
+    /* 輸入區塊樣式 */
+    .input-group {
+      position: relative;
+      margin-bottom: 25px;
+    }
 
-/* 💬 留言區 */
-.messages {
-  margin-top: 20px;
-  max-width: 480px;
-  width: 90%;
-  max-height: 300px;
-  overflow-y: auto;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 12px;
-  background: #fff;
-  text-align: left;
-}
+    .input-group i {
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      color: rgba(255, 255, 255, 0.5);
+      transition: 0.3s;
+    }
 
-.message {
-  border-bottom: 1px solid #eee;
-  padding: 10px;
-  font-size: 1.1rem;
-}
+    input, textarea {
+      width: 100%;
+      padding: 12px 15px 12px 45px; 
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
 
-.message:last-child {
-  border-bottom: none;
-}
+    textarea {
+      min-height: 120px;
+      resize: none;
+    }
 
-.message strong {
-  color: #0f4c81;
-}
+    input::placeholder, textarea::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+    }
 
-/* 📱 手機版調整 */
-@media (max-width: 540px) {
-  html {
-    font-size: 250%; /* 讓手機版再放大一點 */
-  }
+    input:focus, textarea:focus {
+      background: rgba(0, 0, 0, 0.4);
+      border-color: var(--primary-color);
+      box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+    }
 
-  .container {
-    width: 98%; /* 讓寬度更適合小螢幕 */
-    padding: 24px;
-  }
+    input:focus + i, textarea:focus + i {
+      color: var(--primary-color);
+    }
 
-  input, textarea {
-    font-size: 3rem; /* 讓輸入框的字體變大 */
-    padding: 24px;
-  }
+    /* 酷炫按鈕✨✨👀 */
+    button {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+      color: white;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
 
-  button {
-    font-size: 3rem; /* 讓按鈕變大，方便點擊 */
-    padding: 24px;
-  }
+    button:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
+    }
 
-  h2 {
-    font-size: 3rem; /* 避免標題太大 */
-  }
-}
+    button:active {
+      transform: scale(0.98);
+    }
 
+    button:disabled {
+      background: #555;
+      cursor: not-allowed;
+      box-shadow: none;
+      opacity: 0.7;
+    }
+
+    /* 自製吐司💦💦🍞*/
+    .toast-container {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+    }
+
+    .toast {
+      background: rgba(0, 0, 0, 0.85);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 50px;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .toast.success i { color: #00ff88; }
+    .toast.error i { color: #ff4b2b; }
+
+    /*載入中......*/
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      display: none;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /*REM*/
+    @media (max-width: 600px) {
+      .card {
+        width: 95%;
+        padding: 30px 20px;
+      }
+      .header h2 {
+        font-size: 1.8rem;
+      }
+    }
   </style>
+
   <script>
-    // 防止連點的變數
-let isSubmitting = false;
+    let isSubmitting = false;
 
-// 提交留言到 Google Sheets
-function submitMessage() {
-  if (isSubmitting) return; // 如果已經在送出，不做任何事，避免重複留言
-  isSubmitting = true;
+    //顯示自製的吐司🍞💦💦
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      
+      const icon = type === 'success' ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-exclamation-circle"></i>';
+      
+      toast.innerHTML = `${icon} <span>${message}</span>`;
+      container.appendChild(toast);
 
-  let name = document.getElementById('name').value.trim();
-  const message = document.getElementById('message').value.trim();
-  const submitButton = document.querySelector('button');
+      // 動畫進場
+      setTimeout(() => toast.classList.add('show'), 10);
 
-  // 如果名稱欄位為空，設為 "匿名"
-  if (!name) {
-    name = "匿名";
-  }
+      // 3秒後移除
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
 
-  // 檢查留言內容是否為空
-  if (!message) {
-    alert("🐾 嗷嗚🥺~ 不寫些什麼給我ㄇ(x");
-    isSubmitting = false; // 讓按鈕恢復可點擊狀態
-    return;
-  }
+    function submitMessage() {
+      if (isSubmitting) return;
 
-  // 禁用送出按鈕，防止多次點擊
-  submitButton.disabled = true;
-  submitButton.innerText = "🐾 送出中...";
+      const nameInput = document.getElementById('name');
+      const messageInput = document.getElementById('message');
+      const submitButton = document.getElementById('submit-btn');
+      const btnText = document.getElementById('btn-text');
+      const spinner = document.getElementById('spinner');
 
-  // 發送到 GAS
-  google.script.run.withSuccessHandler(() => {
-    alert('🐾 嗷耶～ 成功了!');
-    
-    // 清空輸入欄位
-    document.getElementById('name').value = '';
-    document.getElementById('message').value = '';
+      let name = nameInput.value.trim();
+      const message = messageInput.value.trim();
 
-    // 恢復送出按鈕
-    setTimeout(() => {
-      submitButton.disabled = false;
-      submitButton.innerText = "送出留言";
-      isSubmitting = false;
-    }, 1000); // 1秒後恢復，防止短時間連續點擊
-  }).submitToSheet(name, message);
-}
+      if (!name) name = "無名先知"; // 更有質感的匿名稱呼
 
+      if (!message) {
+        showToast("嘿！發射空白留言是會被壞YM吃掉的喔😈😈！", "error");
+        messageInput.focus();
+        return;
+      }
+
+      // 開始送出狀態
+      isSubmitting = true;
+      submitButton.disabled = true;
+      btnText.innerText = "留言傳輸中...";
+      spinner.style.display = "block";
+
+      // 呼叫 GAS
+      google.script.run.withSuccessHandler(() => {
+        showToast("發射成功！已射給壞YM 🚀");
+        
+        nameInput.value = '';
+        messageInput.value = '';
+
+        // 恢復按鈕
+        setTimeout(() => {
+          submitButton.disabled = false;
+          btnText.innerText = "發射留言";
+          spinner.style.display = "none";
+          isSubmitting = false;
+        }, 1000);
+      }).submitToSheet(name, message);
+    }
   </script>
 </head>
 <body>
-  <h2>🐾 嗷嗷～匿名留言板跑起來了！🚀</h2>
 
-  <div class="container">
-    <label for="name">你的暱稱或推名：</label>
-    <input type="text" id="name" placeholder="🐾 請留我知道的名字嗷(可留空匿名)">
+  <div class="card">
+    <div class="header">
+      <h2>🐾YM的嗷嗷專區🐾</h2>
+      <p>2025快結束了，有沒有什麼話想要對YM說的</p>
+    </div>
 
-    <label for="message">嗷嗷嗷~留言給窩吧~：</label>
-    <textarea id="message" placeholder="🐾 寫些什麼嗷！" required></textarea>
+    <div class="input-group">
+      <i class="fas fa-user-astronaut"></i>
+      <input type="text" id="name" placeholder="名稱/暱稱(可留空匿名)">
+    </div>
 
-    <button onclick="submitMessage()">送出留言</button>
+    <div class="input-group">
+      <i class="fas fa-comment-dots"></i>
+      <textarea id="message" placeholder="輸入你想問的問題或想對YM說的話..." required></textarea>
+    </div>
+
+    <button id="submit-btn" onclick="submitMessage()">
+      <div class="spinner" id="spinner"></div>
+      <span id="btn-text">射給YM</span>
+    </button>
   </div>
 
-  <!-- <div class="messages" id="messages"> -->
-    <!-- 這裡會顯示留言 -->
-  <!-- </div> -->
-</body>
+  <div class="toast-container" id="toast-container"></div>
 
+</body>
 </html>
