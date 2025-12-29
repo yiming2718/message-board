@@ -25,7 +25,7 @@
 ## 🚀 部署
 
 ### **1️⃣ 建立 Google 試算表**
-1. **開啟 Google Sheets**（https://docs.google.com/spreadsheets/）
+1. **開啟 Google Sheets**[https://docs.google.com/spreadsheets/]（https://docs.google.com/spreadsheets/）
 2. 建立一個新的試算表，並檔案名稱命名為 **留言板**(或可自行取名)，下方的 **工作表** 改名為 **messages**
 ![alt text](image/image.png)
 3. **建立三個欄位**：
@@ -36,7 +36,7 @@
 4. 記下 **試算表 ID**（網址中的 `docs.google.com/spreadsheets/d/xxx/edit?...`，其中`xxx` 就是 試算表的ID）
 
 ### **2️⃣ 建立 Google Apps Script**
-1. **開啟 GAS 編輯器**（https://script.google.com/）
+1. **開啟 GAS 編輯器**[https://script.google.com/](https://script.google.com/)
 2. 建立新專案，並貼上 `Code.gs` 內容
 3. 修改 `SHEET_ID`，填入你的試算表 ID
 4. 修改 'MY_TITLE`，幫自己的網站標題命名
