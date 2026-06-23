@@ -1,9 +1,9 @@
-# 🐾 YM的匿名留言板
+# 匿名留言板
 
 這是一個使用 **Google Apps Script + Google Sheets** 的匿名留言板，讓使用者可以匿名留言，並且將留言即時寫入 Google Sheets。
 網址如下：[https://script.google.com/macros/s/AKfycby3aX4XBKCTonGdVJ8P6L4lqX8JLwf86wbXfy5YjEvnIRFlnUmoq9nDNdUvgQA0jig8/exec](https://script.google.com/macros/s/AKfycbybwJuz5dCB4jku0RihI11GDsJ_7Fk6rW_0QGrQrPzl7S8OorYfsn9LZ6ugz7Qu7vo/exec)
 
-## 🎯 功能
+## 功能
 ✅ 使用者可以匿名留言
 ✅ 防止按鈕連續點擊，避免重複送出留言
 ✅ 自動儲存留言到 **Google Sheets**
@@ -22,7 +22,7 @@
 └── README.md   # 專案說明文件
 ```
 
-## 🚀 部署
+## 建置流程
 
 ### **1️⃣ 建立 Google 試算表**
 1. **開啟 Google Sheets** [https://docs.google.com/spreadsheets/](https://docs.google.com/spreadsheets/)
@@ -46,7 +46,7 @@
 ![alt text](image/image3.png)
 2. 貼上 `index.html` 內容
 
-### **4️⃣ 部署網站**
+### **4️⃣ 發布網站**
    - 選擇 `部署` → `新部署`
    - 選擇 `Web 應用程式`
    - **存取權限** 設為 `任何人`
