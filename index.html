@@ -168,7 +168,7 @@
       opacity: 0.7;
     }
 
-    /* 自製吐司💦💦🍞*/
+    /* 自製吐司🍞*/
     .toast-container {
       position: fixed;
       bottom: 20px;
@@ -232,7 +232,7 @@
   <script>
     let isSubmitting = false;
 
-    //顯示自製的吐司🍞💦💦
+    //顯示自製的吐司🍞
     function showToast(message, type = 'success') {
       const container = document.getElementById('toast-container');
       const toast = document.createElement('div');
@@ -268,7 +268,7 @@
       if (!name) name = "無名先知"; // 更有質感的匿名稱呼
 
       if (!message) {
-        showToast("嘿！發射空白留言是會被壞YM吃掉的喔😈😈！", "error");
+        showToast("嘿！不可以發送空白留言哦！", "error");
         messageInput.focus();
         return;
       }
@@ -281,7 +281,7 @@
 
       // 呼叫 GAS
       google.script.run.withSuccessHandler(() => {
-        showToast("發射成功！已射給壞YM 🚀");
+        showToast("發送成功！🚀");
         
         nameInput.value = '';
         messageInput.value = '';
@@ -289,7 +289,7 @@
         // 恢復按鈕
         setTimeout(() => {
           submitButton.disabled = false;
-          btnText.innerText = "發射留言";
+          btnText.innerText = "發送留言";
           spinner.style.display = "none";
           isSubmitting = false;
         }, 1000);
@@ -317,7 +317,7 @@
 
     <button id="submit-btn" onclick="submitMessage()">
       <div class="spinner" id="spinner"></div>
-      <span id="btn-text">射給YM</span>
+      <span id="btn-text">留言給YM</span>
     </button>
   </div>
 
